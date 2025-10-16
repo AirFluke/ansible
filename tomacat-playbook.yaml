@@ -26,9 +26,9 @@
         group: tomcat
         mode: 755
         recurse: yes
-    - name: Donload Tomcat and Unarchive
+    - name: Download Tomcat and Unarchive
       unarchive:
-        src:
+        src: https://downloads.apache.org/tomcat/tomcat-9/v9.0.110/bin/apache-tomcat-9.0.110.tar.gz
         dest: /opt/tomcat/
         remote_src: yes
         extra_opts: [--strip-components=1]
