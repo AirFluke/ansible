@@ -1,0 +1,39 @@
+---
+
+- name: Install and Configure tomcat server for deployment
+  hosts: nodes
+  remote_user: root
+
+  tasks:
+    - name: Update System Package
+      apt:
+        upgrade: yes
+        update_cache: yes
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+    - name: Create Tomcat User
+      user:
+        name: tomcat
+    - name: Create Tomcat Group
+      group:
+        name: tomcat
+    - name: Create tomcat directory
+      file:
+        path: "/opt/tomcat/"
+        owner: tomcat
+        group: tomcat
+        mode: 755
+        recurse: yes
+    - name: Donload Tomcat and Unarchive
+      unarchive:
+        src:
+        dest: /opt/tomcat/
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+    - name: Start  Tomcat Server
+      command: /opt/tomcat/bin/startup.sh
+
+    - name: Allow Tcp Connections
+      command: sudo ufw allow 8080/tcp

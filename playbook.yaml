@@ -4,5 +4,11 @@
   hosts: localhost
 
   tasks:
-    -name: ping
-    shell: ping
+    - name: hello world
+      shell: echo hello world
+
+    - name: date
+      command: date
+
+    - name: run a script
+      script: script.sh

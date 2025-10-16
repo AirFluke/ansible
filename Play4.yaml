@@ -1,0 +1,12 @@
+---
+
+- name: show facts and run some conditions
+  hosts: localhost
+
+  tasks:
+    - name: show ansible facts
+      debug:
+        var: ansible_facts
+    - name: Run command on basis of facts
+      command: echo "os family is ubuntu"
+      when: ansible_facts["os_family"] == "Debian"
