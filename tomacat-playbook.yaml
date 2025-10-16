@@ -2,7 +2,7 @@
 
 - name: Install and Configure tomcat server for deployment
   hosts: nodes
-  remote_user: root
+  remote_user: ubuntu
 
   vars:
     tomcat_user: tomcat
